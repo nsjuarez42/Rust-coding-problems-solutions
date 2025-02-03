@@ -55,6 +55,17 @@ fn fact(n:u64) -> u64{
     return n * fact(n-1);
 }
 
+pub fn disarium_number(n:u32) ->String{
+if n.to_string().chars().enumerate().map(| v |{
+        v.1.to_digit(10).unwrap().pow((v.0 as u32)+1)
+ }).sum::<u32>() == n{
+    return "Disarium !!".to_string()
+    }else {return "Not !!".to_string()};
+
+
+
+}
+
 pub fn strong(n:u64) -> String{
     let strong_str = String::from("STRONG!!!!");
     let not_strong_str = String::from("Not Strong !!");
@@ -108,4 +119,14 @@ mod tests {
         // Testing for 185
         assert_eq!(strong(185), "Not Strong !!");
     }
+
+    #[test]
+    fn disariums() {
+        assert_eq!(disarium_number(89),"Disarium !!");
+        assert_eq!(disarium_number(564),"Not !!");
+        assert_eq!(disarium_number(1024),"Not !!");
+        assert_eq!(disarium_number(135),"Disarium !!");
+        assert_eq!(disarium_number(136586),"Not !!");        
+    }
+
 }
